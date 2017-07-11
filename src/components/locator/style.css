@@ -1,0 +1,13 @@
+.locator {
+  width: 20px;
+  height: 20px;
+  border-radius: 90px;
+  border:  10px solid orange;
+  background: chocolate;
+  position: relative;
+  z-index: 9;
+}
+
+.locator.hovered {
+  background: white;
+}

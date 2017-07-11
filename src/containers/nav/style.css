@@ -1,0 +1,9 @@
+.active {
+  font-weight: bold;
+  color: orange;
+}
+
+.navLink {
+  margin: 1em;
+  text-decoration: none;
+}
