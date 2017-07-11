@@ -52,7 +52,7 @@ class WorldMap extends Component {
         defaultZoom={this.props.zoom}
       >
         {
-          userData.map(e => <Locator key={e._id} lat={e.lat} lng={e.long} />)
+          userData.map(e => <Locator key={e._id} lat={e.lat}/>)
         }
         </GoogleMapReact>
       </div>

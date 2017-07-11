@@ -30,7 +30,9 @@ class Locator extends Component {
       <div
         className={`locator ${this.state.class}`}
         onMouseEnter={this.onMouseEnter}
-        onMouseLeave={this.onMouseLeave} />
+        onMouseLeave={this.onMouseLeave}>
+        Test
+      </div>
     );
   }
 }
