@@ -5,26 +5,15 @@ import App from './containers/app';
 // import registerServiceWorker from './registerServiceWorker';
 import store from './store';
 import {Provider} from 'react-redux';
-import ioClient from 'socket.io-client'
+import ioClient from 'socket.io-client';
 import {ROOT_URL} from './api' ;
+import {getUserDataDispatcher} from './actions/actionCreators';
 let io = ioClient(`${ROOT_URL}`);
-// io.on('hi', (message) => {
-//   console.log('message from Server: ', message);
-// });
-// io.on('db read', (message) => {
-//   console.log('message from Server: ', message);
-// });
-io.on('db post', (message) => {
-  // console.log('message from Server on db post: ', message);
+io.on('db updated', (message) => {
   setTimeout(
     () => {
-      // alert(message);
-      console.log('message from Server on db post: ', message + ' ' + Date.now());
-      const test999 = document.getElementById('test999');
-      test999.innerHTML = message + ': ' + Date.now();
-      // store.dispatch({
-      //   type: 'RELOADING_USER_DATA'
-      // });
+      console.log('message from Server on connect: ', message + ' ' + Date.now());
+      store.dispatch(getUserDataDispatcher(`${ROOT_URL}/api`));
     }, 300);
 });
 
