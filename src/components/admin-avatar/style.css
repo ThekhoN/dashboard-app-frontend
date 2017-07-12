@@ -1,0 +1,14 @@
+.admin-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 90px;
+  /*border: 1px solid #cccccc;*/
+  box-shadow: 0px 1px 6px 0px rgba(50, 50, 50, 0.35);
+  overflow: hidden;
+  margin: 20px auto;
+}
+
+.admin-avatar img {
+  max-width: 100%;
+  height: auto;
+}

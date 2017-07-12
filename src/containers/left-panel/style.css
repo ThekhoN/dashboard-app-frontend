@@ -1,0 +1,9 @@
+.left-panel {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 90px;
+  height: 100%;
+  z-index: 9;
+  background: white;
+}

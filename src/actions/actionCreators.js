@@ -35,7 +35,7 @@ export const signinUser = ({email, password}) => {
       // if req is good & auth'd
       // update state to auth'd
       dispatch({type: AUTH_USER});
-      dispatch({type: 'FETCH_USER_EMAIL', payload: email});
+      dispatch({type: 'FETCH_ADMIN_DATA', payload: email});
       // save JWT in localStorage
       localStorage.setItem('token', responseJson.token);
       localStorage.setItem('userEmail', email);
@@ -73,7 +73,7 @@ export const signupUser = ({email, password}) => {
         return false;
       } else {
         dispatch({type: AUTH_USER});
-        dispatch({type: 'FETCH_USER_EMAIL', payload: email});
+        dispatch({type: 'FETCH_ADMIN_DATA', payload: email});
         localStorage.setItem('token', responseJson.token);
         localStorage.setItem('userEmail', email);
       }
