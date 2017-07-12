@@ -11,14 +11,14 @@
 
 // PROFILE PHOTOS
 // male
-http://i1.sdlcdn.com/static/img/marketing-mailers/mailer/2016/upload999/male01.png
-http://i1.sdlcdn.com/static/img/marketing-mailers/mailer/2016/upload999/male02.png
-http://i1.sdlcdn.com/static/img/marketing-mailers/mailer/2016/upload999/male03.png
-http://i1.sdlcdn.com/static/img/marketing-mailers/mailer/2016/upload999/male04.png
+https://i1.sdlcdn.com/static/img/marketing-mailers/mailer/2016/upload999/male01.png
+https://i1.sdlcdn.com/static/img/marketing-mailers/mailer/2016/upload999/male02.png
+https://i1.sdlcdn.com/static/img/marketing-mailers/mailer/2016/upload999/male03.png
+https://i1.sdlcdn.com/static/img/marketing-mailers/mailer/2016/upload999/male04.png
 
 // female
-http://i1.sdlcdn.com/static/img/marketing-mailers/mailer/2016/upload999/female01.png
-http://i1.sdlcdn.com/static/img/marketing-mailers/mailer/2016/upload999/female02.png
-http://i1.sdlcdn.com/static/img/marketing-mailers/mailer/2016/upload999/female03.png
-http://i1.sdlcdn.com/static/img/marketing-mailers/mailer/2016/upload999/female04.png
+https://i1.sdlcdn.com/static/img/marketing-mailers/mailer/2016/upload999/female01.png
+https://i1.sdlcdn.com/static/img/marketing-mailers/mailer/2016/upload999/female02.png
+https://i1.sdlcdn.com/static/img/marketing-mailers/mailer/2016/upload999/female03.png
+https://i1.sdlcdn.com/static/img/marketing-mailers/mailer/2016/upload999/female04.png
 
