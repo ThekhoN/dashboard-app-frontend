@@ -6,4 +6,23 @@
   right: 0;
   top: 0;
   z-index: 9;
+  background: #ddd;
+  transform: translateX(238px);
+  transition: all 0.3s linear;
+}
+
+.right-panel.active {
+  transform: translateX(0px);
+}
+
+.right-panel-control {
+  width: 40px;
+  height: 100px;
+  background: orange;
+  position: absolute;
+  left:-40px;
+  bottom: 20px;
+  z-index: 11;
+  cursor: pointer;
+  border-radius: 2px;
 }

@@ -3,7 +3,7 @@ import AdminAvatar from '../../components/admin-avatar';
 import DashboardButtonWrapper from '../../components/dashboard-button-wrapper';
 import './style.css';
 import {connect} from 'react-redux';
-import {signoutUser} from '../../actions/actionCreators';
+import {signoutUser, activateLeftPanel, deactivateLeftPanel} from '../../actions/actionCreators';
 
 const dummyData = {
   '__v': 0,
@@ -17,22 +17,40 @@ const dummyData = {
   'timeStamp': '2017-07-12T06:43:42.832Z'
 };
 
-const LeftPanel = ({data, adminEmail, handleSignOutUser}) => (
-  <div className='left-panel panel-shadow'>
-    <AdminAvatar imgSrc={dummyData.profilePhoto} title={adminEmail} />
-    <DashboardButtonWrapper handleOnClick={handleSignOutUser}>
-      Sign out
-    </DashboardButtonWrapper>
-  </div>
-);
+const LeftPanel = ({
+  activeState,
+  data,
+  adminEmail,
+  handleSignOutUser,
+  handleActivateLeftPanel,
+  handleDeactivateLeftPanel
+}) => {
+  const controlClickEvent = activeState ? handleDeactivateLeftPanel : handleActivateLeftPanel;
+  return (
+    <div className={`left-panel panel-shadow ${activeState}`}>
+      <div className='left-panel-control' onClick={controlClickEvent} />
+      <AdminAvatar imgSrc={dummyData.profilePhoto} title={adminEmail} />
+      <DashboardButtonWrapper handleOnClick={handleSignOutUser}>
+        Sign out
+      </DashboardButtonWrapper>
+    </div>
+  );
+};
 
 const mapStateToProps = state => ({
-  adminEmail: state.adminData.email
+  adminEmail: state.adminData.email,
+  activeState: state.interactionStates.leftPanel
 });
 
 const mapDispatchToProps = dispatch => ({
   handleSignOutUser: () => {
     dispatch(signoutUser());
+  },
+  handleActivateLeftPanel: () => {
+    dispatch(activateLeftPanel());
+  },
+  handleDeactivateLeftPanel: () => {
+    dispatch(deactivateLeftPanel());
   }
 });
 

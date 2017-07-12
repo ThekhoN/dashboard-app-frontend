@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
+import {setSelectedUser, activateRightPanel} from '../../actions/actionCreators';
 import './style.css';
+import {connect} from 'react-redux';
 
 const STATUS = {
   HOVERED: 'hovered',
@@ -26,15 +28,27 @@ class Locator extends Component {
     });
   }
   render () {
+    const {data, handleSetSelectedUser, handleActivateRightPanel} = this.props;
     return (
       <div
+        onClick={() => {
+          handleSetSelectedUser(data);
+          handleActivateRightPanel();
+        }}
         className={`locator ${this.state.class}`}
         onMouseEnter={this.onMouseEnter}
-        onMouseLeave={this.onMouseLeave}>
-        Test
-      </div>
+        onMouseLeave={this.onMouseLeave} />
     );
   }
 }
 
-export default Locator;
+const mapDispatchToProps = dispatch => ({
+  handleSetSelectedUser: (data) => {
+    dispatch(setSelectedUser(data));
+  },
+  handleActivateRightPanel: () => {
+    dispatch(activateRightPanel());
+  }
+});
+
+export default connect(null, mapDispatchToProps)(Locator);

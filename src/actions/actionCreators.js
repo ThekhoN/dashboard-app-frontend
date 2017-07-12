@@ -6,7 +6,15 @@ import {
   GET_USER_DATA,
   LOADING_USER_DATA,
   LOADED_USER_DATA,
-  GET_USER_DATA_ERROR
+  GET_USER_DATA_ERROR,
+  ACTIVATE_LEFT_PANEL,
+  DEACTIVATE_LEFT_PANEL,
+  ACTIVATE_RIGHT_PANEL,
+  DEACTIVATE_RIGHT_PANEL,
+  ACTIVATE_SELECTED_USER,
+  DEACTIVATE_SELECTED_USER,
+  SET_SELECTED_USER,
+  DELETE_SELECTED_USER
 } from './types';
 import {ROOT_URL} from '../api';
 
@@ -127,43 +135,35 @@ export const getUserDataDispatcher = (url) => {
   };
 };
 
-/*
-// author ~ email
-export const submitEntryDispatcher = ({author, text, tag}) => {
-  if (!tag) {
-    tag = [];
-  }
-  return function (dispatch) {
-    dispatch({type: 'SUBMIT_USER_ENTRY', payload: {author, text, tag}});
-    // dispatch(submitEntrySubmitting('submitting'));
-    return fetch(`${ROOT_URL}/entry`, {
-      method: 'POST',
-      headers: {
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-        'Content-Type': 'application/json',
-        'Authorization': localStorage.getItem('token')
-      },
-      body: JSON.stringify({
-        author,
-        text,
-        tag
-      })
-    })
-    .then(response => response.json())
-    .then(responseJson => {
-      console.log('responseJson: ', responseJson);
-      if (responseJson.error) {
-        // dispatch(submitEntryError(responseJson.error));
-        return false;
-      } else {
-        console.log('responseJson: ', responseJson);
-        // dispatch(submittedEntrySubmitting('submitted'));
-      }
-    })
-    .catch(err => {
-      console.log('error in submitEntry: ', err);
-      // dispatch(submitEntryError('Error in submitEntry'));
-    });
-  }
-};
-*/
+/*************************************************/
+  // INTERACTIONS STATES
+/*************************************************/
+export const activateLeftPanel = () => ({
+  type: ACTIVATE_LEFT_PANEL
+});
+export const deactivateLeftPanel = () => ({
+  type: DEACTIVATE_LEFT_PANEL
+});
+export const activateRightPanel = () => ({
+  type: ACTIVATE_RIGHT_PANEL
+});
+export const deactivateRightPanel = () => ({
+  type: DEACTIVATE_RIGHT_PANEL
+});
+
+/*************************************************/
+  // SELECTED USER
+/*************************************************/
+export const activateSelectedUser = () => ({
+  type: ACTIVATE_SELECTED_USER
+});
+export const deActivateSelectedUser = () => ({
+  type: DEACTIVATE_SELECTED_USER
+});
+export const setSelectedUser = payload => ({
+  type: SET_SELECTED_USER,
+  payload
+});
+export const deleteSelectedUser = () => ({
+  type: DELETE_SELECTED_USER
+});

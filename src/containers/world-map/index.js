@@ -5,10 +5,18 @@ import {GOOGLE_MAP_API_KEY} from '../../api';
 import Locator from '../locator';
 import './style.css';
 
+const createMapOptions = maps =>
+  ({
+    panControl: false,
+    mapTypeControl: false,
+    scrollwheel: false,
+    styles: [{ stylers: [{ 'saturation': -100 }, { 'gamma': 0.8 }, { 'lightness': 4 }, { 'visibility': 'on' }] }]
+});
+
 class WorldMap extends Component {
   render () {
     const {userData} = this.props;
-    console.log('userData: ', userData);
+    // console.log('userData: ', userData);
     return (
       <div className='world-map-container'>
         <GoogleMapReact
@@ -17,7 +25,7 @@ class WorldMap extends Component {
           defaultZoom={this.props.zoom}
         >
           {
-            userData.map(e => <Locator key={e._id} lat={e.lat} lng={e.long} />)
+            userData.map(e => <Locator data={e} key={e._id} lat={e.lat} lng={e.long} />)
           }
         </GoogleMapReact>
       </div>

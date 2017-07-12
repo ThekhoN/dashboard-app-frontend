@@ -1,0 +1,14 @@
+.user-info-display {
+  padding:20px;
+  box-sizing: border-box;
+}
+
+.user-detail {
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.user-info-row {
+  margin-bottom: 10px;
+}
