@@ -20,9 +20,16 @@
   height: 100px;
   background: orange;
   position: absolute;
-  left:-40px;
   bottom: 20px;
-  z-index: 11;
+  z-index: 1;
   cursor: pointer;
   border-radius: 2px;
+  opacity: 0;
+  transform: translateX(40px);
+  transition: all 0.2s ease;
+}
+
+.right-panel-control.active {
+  opacity: 1;
+  transform: translateX(-40px);
 }

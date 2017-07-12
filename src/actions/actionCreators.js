@@ -11,8 +11,8 @@ import {
   DEACTIVATE_LEFT_PANEL,
   ACTIVATE_RIGHT_PANEL,
   DEACTIVATE_RIGHT_PANEL,
-  ACTIVATE_SELECTED_USER,
-  DEACTIVATE_SELECTED_USER,
+  ACTIVATE_SELECTED_USER_CONTROL,
+  DEACTIVATE_SELECTED_USER_CONTROL,
   SET_SELECTED_USER,
   DELETE_SELECTED_USER
 } from './types';
@@ -155,10 +155,10 @@ export const deactivateRightPanel = () => ({
   // SELECTED USER
 /*************************************************/
 export const activateSelectedUser = () => ({
-  type: ACTIVATE_SELECTED_USER
+  type: ACTIVATE_SELECTED_USER_CONTROL
 });
 export const deActivateSelectedUser = () => ({
-  type: DEACTIVATE_SELECTED_USER
+  type: DEACTIVATE_SELECTED_USER_CONTROL
 });
 export const setSelectedUser = payload => ({
   type: SET_SELECTED_USER,

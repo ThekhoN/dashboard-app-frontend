@@ -28,7 +28,7 @@ const LeftPanel = ({
   const controlClickEvent = activeState ? handleDeactivateLeftPanel : handleActivateLeftPanel;
   return (
     <div className={`left-panel panel-shadow ${activeState}`}>
-      <div className='left-panel-control' onClick={controlClickEvent} />
+      {/* {<div className='left-panel-control' onClick={controlClickEvent} />} */}
       <AdminAvatar imgSrc={dummyData.profilePhoto} title={adminEmail} />
       <DashboardButtonWrapper handleOnClick={handleSignOutUser}>
         Sign out
