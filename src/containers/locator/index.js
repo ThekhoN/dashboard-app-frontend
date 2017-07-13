@@ -16,7 +16,8 @@ class Locator extends Component {
     this.handleClickState = this.handleClickState.bind(this);
     this.state = {
       hoverClass: HOVER_STATUS.NORMAL,
-      clicked: false
+      clicked: false,
+      newMountActive: true
     };
   }
   onMouseEnter () {
@@ -29,46 +30,42 @@ class Locator extends Component {
       hoverClass: HOVER_STATUS.NORMAL
     });
   }
-  handleClickState (e) {
-    // e.stopPropagation();
-    // console.log('this.props.id: ', this.props.id);
-    // console.log('this.props.activeId: ', this.props.activeId);
+  componentDidMount () {
+    // console.log('mounted locator!!!');
+    setTimeout(() => {
+      this.setState({
+        newMountActive: false
+      });
+    }, 300);
+  }
+  handleClickState () {
     this.setState({
       clicked: !this.state.clicked
-      // selected: !this.state.selected
     }, () => {
       setTimeout(() => {
         this.setState({
           clicked: false
         });
-      });
+      }, 300);
     });
-  }
-  shouldComponentUpdate (nextProps, nextState) {
-    if (this.props.selected !== nextProps.selected) {
-      console.log('should update now...');
-      return true;
-    } else {
-      console.log('should not update');
-      return false;
-    }
   }
   render () {
     const clickState = this.state.clicked ? 'active' : '';
+    const newMountActiveState = this.state.newMountActive ? 'new-mount-active' : '';
     const {data, handleSetSelectedUser, handleActivateRightPanel} = this.props;
     const selectedState = this.props.selected ? 'selected' : '';
     return (
       <div
-        onClick={(e) => {
+        onClick={() => {
           handleSetSelectedUser(data);
           handleActivateRightPanel();
-          this.handleClickState(e);
+          this.handleClickState();
         }}
         className={`locator ${this.state.hoverClass} ${selectedState} ${clickState}`}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave} >
         <div className='locator-inner' />
-        <span className={`locator-effects ${clickState}`} onClick={(e) => {
+        <span className={`locator-effects ${clickState} ${newMountActiveState}`} onClick={(e) => {
           e.stopPropagation();
         }} />
       </div>

@@ -16,6 +16,23 @@ io.on('db updated', (message) => {
       store.dispatch(getUserDataDispatcher(`${ROOT_URL}/api`));
     }, 300);
 });
+if (window.localStorage) {
+  const token = localStorage.getItem('token');
+  const adminEmail = localStorage.getItem('userEmail');
+  if (token && adminEmail) {
+    store.dispatch({
+      type: 'AUTH_USER'
+    });
+    store.dispatch({
+      type: 'FETCH_ADMIN_DATA',
+      payload: adminEmail
+    });
+  } else {
+    store.dispatch({
+      type: 'UNAUTH_USER'
+    });
+  }
+}
 
 const mountNode = document.getElementById('root');
 

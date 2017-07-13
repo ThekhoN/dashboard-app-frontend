@@ -30,11 +30,30 @@
   border-radius: 2px;
 }
 
-@media (min-width: 960px) and (min-height: 768px) {
+@media (min-width: 960px) and (min-height: 640px) {
   .left-panel {
     width: 90px;
     height: 100%;
     display: block;
     padding: 0;
+  }
+}
+
+.left-panel-buttons-wrapper {
+  width: 160px;
+  height: 60px;
+  right: 0;
+  top: 0;
+  position: absolute;
+}
+
+@media (min-width: 960px) and (min-height: 640px) {
+  .left-panel-buttons-wrapper {
+    height: 180px;
+    width: 180px;
+    right: auto;
+    left:0;
+    top: 50%;
+    margin-top: -90px;
   }
 }

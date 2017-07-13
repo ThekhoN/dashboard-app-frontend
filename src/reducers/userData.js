@@ -21,6 +21,8 @@ const userData = (state = initialStateEntries, action) => {
       return {...state, status: action.payload};
     case LOADED_USER_DATA:
       return {...state, status: action.payload};
+    case 'ADDING_USER_DATA':
+      return state;
     default:
       return state;
   }

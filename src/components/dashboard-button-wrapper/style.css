@@ -6,17 +6,16 @@
   justify-content: center;
   color: #414042;
   background: #e6e7e8;
-  position: absolute;
-  top: 0;
-  right: 0;
+  float: left;
+  cursor: pointer;
 }
 
-.dashboard-button-wrapper:hover {
-  color: white;
-  background: #a7a9ac;
+.dashboard-button-wrapper:nth-child(2) {
+  background: #ccc;
 }
 
-@media (min-width: 960px) and (min-height: 768px) {
+
+@media (min-width: 960px) and (min-height: 640px) {
   .dashboard-button-wrapper {
     width: 90px;
     height: 90px;
@@ -26,8 +25,10 @@
     color: #414042;
     cursor: pointer;
     background: #e6e7e8;
-    top: 50%;
-    margin-top: -45px;
     float: none;
+  }
+  .dashboard-button-wrapper:hover {
+    color: white;
+    background: #a7a9ac;
   }
 }

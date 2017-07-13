@@ -39,7 +39,7 @@
   position: absolute;
   z-index:2;
   border-radius: 300px;
-  background: rgba(247, 148, 30, 0.1);
+  background: rgba(247, 148, 30, 0.2);
   opacity: 0;
   transform: scale(0);
 }
@@ -51,4 +51,8 @@
 
 .locator-effects.active {
   animation: ripple 0.6s linear;
+}
+
+.locator-effects.new-mount-active {
+  animation: ripple 0.8s 2 linear;
 }

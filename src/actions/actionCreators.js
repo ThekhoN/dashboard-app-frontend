@@ -11,8 +11,6 @@ import {
   DEACTIVATE_LEFT_PANEL,
   ACTIVATE_RIGHT_PANEL,
   DEACTIVATE_RIGHT_PANEL,
-  ACTIVATE_SELECTED_USER_CONTROL,
-  DEACTIVATE_SELECTED_USER_CONTROL,
   SET_SELECTED_USER,
   DELETE_SELECTED_USER
 } from './types';
@@ -46,7 +44,8 @@ export const signinUser = ({email, password}) => {
       dispatch({type: 'FETCH_ADMIN_DATA', payload: email});
       // save JWT in localStorage
       localStorage.setItem('token', responseJson.token);
-      localStorage.setItem('userEmail', email);
+      // save admin email in localStorage
+      localStorage.setItem('adminEmail', email);
     })
     .catch((err) => {
       dispatch(authError('Your email or password is incorrect. \n Please try again.'));
@@ -135,6 +134,42 @@ export const getUserDataDispatcher = (url) => {
   };
 };
 
+export const addUserDataDispatcher = ({gender, locale, profilePhoto, timezone, lat, long}) => {
+  return function (dispatch) {
+    // dispatch({type: 'ADDING_USER_DATA'});
+    return fetch(`${ROOT_URL}/api/user-data`, {
+      method: 'POST',
+      headers: {
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token')
+      },
+      body: JSON.stringify({
+        gender,
+        locale,
+        profilePhoto,
+        timezone,
+        lat,
+        long
+      })
+    })
+    .then(response => response.json())
+    .then(responseJson => {
+      if (responseJson.error) {
+        // dispatch userDataSubmitError
+        return false;
+      } else {
+        console.log('sub');
+        // dispatch userDataSubmitSuccess
+      }
+    })
+    .catch(err => {
+      console.log('error in submitEntry: ', err);
+      // dispatch userDataSubmitError
+    });
+  };
+};
+
 /*************************************************/
   // INTERACTIONS STATES
 /*************************************************/
@@ -154,12 +189,6 @@ export const deactivateRightPanel = () => ({
 /*************************************************/
   // SELECTED USER
 /*************************************************/
-export const activateSelectedUser = () => ({
-  type: ACTIVATE_SELECTED_USER_CONTROL
-});
-export const deActivateSelectedUser = () => ({
-  type: DEACTIVATE_SELECTED_USER_CONTROL
-});
 export const setSelectedUser = payload => ({
   type: SET_SELECTED_USER,
   payload

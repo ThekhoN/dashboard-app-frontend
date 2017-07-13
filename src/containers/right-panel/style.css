@@ -20,7 +20,7 @@
   height: 80px;
   background: rgba(255, 255, 255, 0.6);
   position: absolute;
-  bottom: 20px;
+  bottom: 5vh;
   z-index: 1;
   cursor: pointer;
   border-radius: 2px;
@@ -35,7 +35,7 @@
   background: rgba(255, 255, 255, 1);
 }
 
-@media (min-width: 960px) and (min-height: 768px) {
+@media (min-width: 960px) and (min-height: 640px) {
   .right-panel-control {
     width: 40px;
     height: 100px;
@@ -47,7 +47,7 @@
   transform: translateX(-36px);
 }
 
-@media (min-width: 960px) and (min-height: 768px) {
+@media (min-width: 960px) and (min-height: 640px) {
   .right-panel-control.active {
     transform: translateX(-40px);
   }

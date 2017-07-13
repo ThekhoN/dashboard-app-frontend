@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Signin from '../signin';
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 import './style.css';
 
 class LandingAuth extends Component {
@@ -8,10 +8,10 @@ class LandingAuth extends Component {
     return (
       <div className='landing-auth'>
         <Signin />
-        <br />
+        {/* <br />
         <Link to='/signup'>
           Click here to sign up
-        </Link>
+        </Link> */}
       </div>
     );
   }

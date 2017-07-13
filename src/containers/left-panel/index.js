@@ -3,7 +3,8 @@ import AdminAvatar from '../../components/admin-avatar';
 import DashboardButtonWrapper from '../../components/dashboard-button-wrapper';
 import './style.css';
 import {connect} from 'react-redux';
-import {signoutUser, activateLeftPanel, deactivateLeftPanel} from '../../actions/actionCreators';
+import {signoutUser, activateLeftPanel, deactivateLeftPanel, addUserDataDispatcher} from '../../actions/actionCreators';
+import generateRandomUserData from '../../modules/generateRandomUserData';
 
 const dummyData = {
   '__v': 0,
@@ -23,16 +24,26 @@ const LeftPanel = ({
   adminEmail,
   handleSignOutUser,
   handleActivateLeftPanel,
-  handleDeactivateLeftPanel
+  handleDeactivateLeftPanel,
+  handleAddUserDataDispatcher
 }) => {
   // const controlClickEvent = activeState ? handleDeactivateLeftPanel : handleActivateLeftPanel;
   return (
     <div className={`left-panel panel-shadow ${activeState}`}>
       {/* {<div className='left-panel-control' onClick={controlClickEvent} />} */}
       <AdminAvatar imgSrc={dummyData.profilePhoto} title={adminEmail} />
-      <DashboardButtonWrapper handleOnClick={handleSignOutUser}>
-        Sign out
-      </DashboardButtonWrapper>
+      <div className='left-panel-buttons-wrapper'>
+        <DashboardButtonWrapper handleOnClick={() => {
+          const randomUser = generateRandomUserData();
+          console.log(randomUser);
+          handleAddUserDataDispatcher(randomUser);
+        }}>
+          Add user
+        </DashboardButtonWrapper>
+        <DashboardButtonWrapper handleOnClick={handleSignOutUser}>
+          Sign out
+        </DashboardButtonWrapper>
+      </div>
     </div>
   );
 };
@@ -43,6 +54,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  handleAddUserDataDispatcher: (newUserObj) => {
+    dispatch(addUserDataDispatcher(newUserObj));
+  },
   handleSignOutUser: () => {
     dispatch(signoutUser());
   },
