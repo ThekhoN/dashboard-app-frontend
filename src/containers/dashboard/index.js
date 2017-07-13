@@ -5,6 +5,7 @@ import {getUserDataDispatcher} from '../../actions/actionCreators';
 import {ROOT_URL} from '../../api';
 import LeftPanel from '../left-panel';
 import RightPanel from '../right-panel';
+import './style.css';
 
 class Dashboard extends Component {
   componentDidMount () {

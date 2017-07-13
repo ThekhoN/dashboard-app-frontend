@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import enhanceWithClickOutside from 'react-click-outside';
 import UserAvatar from '../../components/user-avatar';
 import UserInfoDisplay from '../../components/user-info-display';
-import SVGWrapper from '../../components/svg-wrapper';
 import './style.css';
 import {connect} from 'react-redux';
 import {activateRightPanel, deactivateRightPanel, deleteSelectedUser} from '../../actions/actionCreators';
@@ -24,7 +23,6 @@ class RightPanel extends Component {
     } = this.props;
     const controlClickEvent = activeState ? handleDeactivateRightPanel : handleActivateRightPanel;
     const displayControlClass = activeData ? 'active' : '';
-    // const svgControlPath = <path fill='#A8AAAD' d='M10.9 8.4c0-.6.3-.7.7-.3l6.8 6.3c.4.4.4 1 0 1.4l-6.8 6.3c-.4.4-.7.2-.7-.3V8.4z' />;
     return (
       <div className={`right-panel panel-shadow ${activeState}`}>
         <div className={`right-panel-control ${displayControlClass}`} onClick={controlClickEvent}>

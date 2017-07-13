@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Field, reduxForm, stopSubmit} from 'redux-form';
 import {signinUser} from '../../actions/actionCreators';
-import styles from './style.css';
+import './style.css';
 
 const renderField = ({
     input,
@@ -12,14 +12,16 @@ const renderField = ({
     meta: {touched, error}
   }) => {
   return (
-    <fieldset>
+    <fieldset
+      className='form-row'>
       <input
+        className='form-input'
         {...input}
         name={label}
         placeholder={placeholder}
         type={type}
       />
-      {touched && error && <span className='error-text'>{error}</span>}
+      {touched && error && <p className='error-text-wrapper'><span className='form-error-text'>{error}</span></p>}
     </fieldset>);
 };
 
@@ -35,25 +37,36 @@ export class Signin extends Component {
   render () {
     const {handleSubmit, errorMessage} = this.props;
     return (
-      <div className={styles.formContainer}>
+      <div className='form-container'>
         <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-          <Field
-            type='text'
-            name='email'
-            placeholder='email'
-            component={renderField}
-            label='email'
-          />
-          <Field
-            type='password'
-            name='password'
-            placeholder='password'
-            component={renderField}
-            label='password'
-          />
-          {errorMessage && <div className={styles.errorText}>{errorMessage}</div>}
+          <div className='row'>
+            <Field
+              type='text'
+              name='email'
+              placeholder='email'
+              component={renderField}
+              label='email'
+            />
+          </div>
+          <div className='row'>
+            <Field
+              className='form-row'
+              type='password'
+              name='password'
+              placeholder='password'
+              component={renderField}
+              label='password'
+            />
+          </div>
+          {errorMessage && <div className='form-error-text'>{errorMessage}</div>}
           <br />
-          <button type='submit'>Sign in</button>
+          <div className='row'>
+            <div className='form-row'>
+              <button
+                className='form-submit-button'
+                type='submit'>Sign in</button>
+            </div>
+          </div>
         </form>
       </div>
     );

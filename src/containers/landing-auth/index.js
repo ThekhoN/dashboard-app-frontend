@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
 import Signin from '../signin';
 import {Link} from 'react-router-dom';
+import './style.css';
 
 class LandingAuth extends Component {
   render () {
     return (
-      <div>
-        <h2>Welkommen!</h2>
-        <br />
+      <div className='landing-auth'>
         <Signin />
         <br />
         <Link to='/signup'>

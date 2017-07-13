@@ -11,32 +11,25 @@ body {
   background: -webkit-linear-gradient(to right, #FFD194, #D1913C);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #FFD194, #D1913C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
-@media (min-width: 960px) and (min-height: 768px) {
+@media (min-width:640px) {
   body {
     font-size: 12px;
   }
 }
+
 #root {
-  max-width: 1366px;
-  margin: 0 auto;
   overflow: hidden;
   position: relative;
-  height: 100vh;
-  box-sizing: border-box;
-  background: white;
-}
-
-@media (min-width: 960px) and (min-height: 768px) {
-  #root {
-    border: 10px solid white;
-    border-left: 0;
-    border-radius: 4px;
-    height: 90vh;
-    margin-top: 5vh;
-    box-shadow: 0px 0px 18px 0px rgba(50, 50, 50, 0.35);
-  }
+  width: 100%;
+  min-height: 100vh;
 }
 
 .panel-shadow {
   box-shadow: 0px 2px 12px 0px rgba(50, 50, 50, 0.65)
 }
+
+fieldset {
+  border: 0;
+}
+
+/*  @media (min-width: 960px) and (min-height: 768px) {}  */

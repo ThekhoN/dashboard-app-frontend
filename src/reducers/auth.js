@@ -4,7 +4,7 @@ import {
   AUTH_ERROR
 } from '../actions/types';
 
-const auth = (state = {authenticated: true, error: ''}, action) => {
+const auth = (state = {authenticated: false, error: ''}, action) => {
   switch (action.type) {
     case AUTH_USER:
       return {...state, error: '', authenticated: true};
