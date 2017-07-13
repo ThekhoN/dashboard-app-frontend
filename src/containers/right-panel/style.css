@@ -1,13 +1,13 @@
 .right-panel {
-  width: 238px;
+  width: 280px;
   height: 100%;
   background: white;
-  position: fixed;
+  position: absolute;
   right: 0;
   top: 0;
   z-index: 9;
   background: #ddd;
-  transform: translateX(238px);
+  transform: translateX(280px);
   transition: all 0.3s linear;
 }
 
@@ -16,20 +16,54 @@
 }
 
 .right-panel-control {
-  width: 40px;
-  height: 100px;
-  background: orange;
+  width: 36px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.6);
   position: absolute;
   bottom: 20px;
   z-index: 1;
   cursor: pointer;
   border-radius: 2px;
   opacity: 0;
-  transform: translateX(40px);
   transition: all 0.2s ease;
+  border: 1px solid white;
+  border-right: 0;
+  box-sizing: border-box;
+}
+
+.right-panel-control:hover {
+  background: rgba(255, 255, 255, 1);
+}
+
+@media (min-width: 960px) and (min-height: 768px) {
+  .right-panel-control {
+    width: 40px;
+    height: 100px;
+  }
 }
 
 .right-panel-control.active {
   opacity: 1;
-  transform: translateX(-40px);
+  transform: translateX(-36px);
+}
+
+@media (min-width: 960px) and (min-height: 768px) {
+  .right-panel-control.active {
+    transform: translateX(-40px);
+  }
+}
+
+.responsive-svg-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top:200%;
+  overflow:hidden;
+}
+
+.responsive-svg-wrapper svg {
+  height: 100%;
+  width: 100%;
+  position:absolute;
+  top:0;
+  left:-4px;
 }

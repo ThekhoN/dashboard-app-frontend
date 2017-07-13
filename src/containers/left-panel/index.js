@@ -25,7 +25,7 @@ const LeftPanel = ({
   handleActivateLeftPanel,
   handleDeactivateLeftPanel
 }) => {
-  const controlClickEvent = activeState ? handleDeactivateLeftPanel : handleActivateLeftPanel;
+  // const controlClickEvent = activeState ? handleDeactivateLeftPanel : handleActivateLeftPanel;
   return (
     <div className={`left-panel panel-shadow ${activeState}`}>
       {/* {<div className='left-panel-control' onClick={controlClickEvent} />} */}

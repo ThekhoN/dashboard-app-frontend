@@ -24,7 +24,7 @@ const UserInfoDisplay = ({data}) => (
       <span id='timezone' className='user-detail'>{data.timezone}</span>
     </div>
     <div className='user-info-row'>
-      <label htmlFor='timezone'>Date of joining:</label>
+      <label htmlFor='timezone'>Time of joining:</label>
       <br />
       <span id='timezone' className='user-detail'>{getStandardDate(Date.parse(data.timeStamp))}</span>
     </div>

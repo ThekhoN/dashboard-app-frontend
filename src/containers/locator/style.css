@@ -2,12 +2,53 @@
   width: 20px;
   height: 20px;
   border-radius: 90px;
-  border:  10px solid orange;
-  background: chocolate;
+  background: white;
   position: relative;
   z-index: 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.680, -0.550, 0.265, 1.550);
+  cursor: pointer;
+  box-shadow: 0px 0px 24px 0px rgba(50, 50, 50, 0.6);
+}
+
+.locator.selected {
+  transform: scale(1.6);
 }
 
 .locator.hovered {
+  background: #f7941e;
+}
+
+.locator.hovered .locator-inner{
   background: white;
+}
+
+.locator-inner {
+  background: #f29f4e;
+  width: 14px;
+  height: 14px;
+  border-radius: 90px;
+  transition: all 0.3s linear;
+}
+
+.locator-effects {
+  width: 600px;
+  height: 600px;
+  position: absolute;
+  z-index:2;
+  border-radius: 300px;
+  background: rgba(247, 148, 30, 0.1);
+  opacity: 0;
+  transform: scale(0);
+}
+
+@keyframes ripple {
+    2% {opacity: 1}
+    100% {opacity: 0; transform: scale(2.5);}
+}
+
+.locator-effects.active {
+  animation: ripple 0.6s linear;
 }

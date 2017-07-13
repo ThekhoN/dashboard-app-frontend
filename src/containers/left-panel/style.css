@@ -1,13 +1,17 @@
 .left-panel {
-  position: fixed;
+  position: absolute;
   left: 0;
   top: 0;
-  width: 90px;
-  height: 100%;
+  width: 100%;
+  height: 60px;
   z-index: 9;
   background: white;
   transform: translateX(-90px);
   transition: all 0.3s linear;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  box-sizing: border-box;
 }
 
 .left-panel.active {
@@ -24,4 +28,13 @@
   z-index: 11;
   cursor: pointer;
   border-radius: 2px;
+}
+
+@media (min-width: 960px) and (min-height: 768px) {
+  .left-panel {
+    width: 90px;
+    height: 100%;
+    display: block;
+    padding: 0;
+  }
 }

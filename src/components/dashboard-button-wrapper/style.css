@@ -1,18 +1,33 @@
 .dashboard-button-wrapper {
-  width: 90px;
-  height: 90px;
+  width: 80px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #414042;
-  cursor: pointer;
   background: #e6e7e8;
   position: absolute;
-  top: 50%;
-  margin-top: -45px;
+  top: 0;
+  right: 0;
 }
 
 .dashboard-button-wrapper:hover {
   color: white;
   background: #a7a9ac;
+}
+
+@media (min-width: 960px) and (min-height: 768px) {
+  .dashboard-button-wrapper {
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #414042;
+    cursor: pointer;
+    background: #e6e7e8;
+    top: 50%;
+    margin-top: -45px;
+    float: none;
+  }
 }

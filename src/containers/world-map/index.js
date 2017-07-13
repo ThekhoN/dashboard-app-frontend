@@ -4,28 +4,48 @@ import GoogleMapReact from 'google-map-react';
 import {GOOGLE_MAP_API_KEY} from '../../api';
 import Locator from '../locator';
 import './style.css';
+// const createMapOptions = maps =>
+//   ({
+//     panControl: false,
+//     mapTypeControl: false,
+//     scrollwheel: false,
+//     styles: [{ stylers: [{ 'saturation': -100 }, { 'gamma': 0.8 }, { 'lightness': 4 }, { 'visibility': 'on' }] }]
+// });
 
 const createMapOptions = maps =>
   ({
+    zoomControl: false,
     panControl: false,
     mapTypeControl: false,
-    scrollwheel: false,
-    styles: [{ stylers: [{ 'saturation': -100 }, { 'gamma': 0.8 }, { 'lightness': 4 }, { 'visibility': 'on' }] }]
+    scrollwheel: false
 });
 
 class WorldMap extends Component {
   render () {
-    const {userData} = this.props;
-    // console.log('userData: ', userData);
+    const {userData, activeId} = this.props;
+    const componentsArr = [];
+    const updateComponentsArr = () => {
+      userData.forEach(e => {
+        if (e._id === activeId) {
+          const selectedOne = (<Locator data={e} id={e._id} key={e._id} lat={e.lat} lng={e.long} selected='true' />);
+          componentsArr.push(selectedOne);
+        } else {
+          const normal = (<Locator data={e} id={e._id} key={e._id} lat={e.lat} lng={e.long} selected='' />);
+          componentsArr.push(normal);
+        }
+      });
+    };
+    updateComponentsArr();
     return (
       <div className='world-map-container'>
         <GoogleMapReact
+          options={createMapOptions}
           bootstrapURLKeys={{key: GOOGLE_MAP_API_KEY}}
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
         >
           {
-            userData.map(e => <Locator data={e} key={e._id} lat={e.lat} lng={e.long} />)
+            componentsArr
           }
         </GoogleMapReact>
       </div>
@@ -39,7 +59,8 @@ WorldMap.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  userData: state.userData.data
+  userData: state.userData.data,
+  activeId: state.selectedUser.activeData._id
 });
 
 export default connect(mapStateToProps, null)(WorldMap);
