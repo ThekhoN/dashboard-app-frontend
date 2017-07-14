@@ -4,3 +4,7 @@ React, React-router, Redux, Socket.io
 
 ### Live Demo:
 * https://dashboard-app-frontend.herokuapp.com :sweat_smile:
+
+
+---
+icons from https://thenounproject.com/daminik/collection/profile/
