@@ -10,7 +10,7 @@ const dummyData = {
   '__v': 0,
   'gender': 'male',
   'locale': 'en-IN',
-  'profilePhoto': 'http://i1.sdlcdn.com/static/img/marketing-mailers/mailer/2016/upload999/male01.png',
+  'profilePhoto': 'https://i1.sdlcdn.com/static/img/marketing-mailers/mailer/2016/upload999/male01.png',
   'timezone': 'GMT+05:5',
   'lat': '26.9716',
   'long': '59.5946',
