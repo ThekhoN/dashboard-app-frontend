@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Field, reduxForm} from 'redux-form';
 import {signupUser, authErrorReset} from '../../actions/actionCreators';
+import validateEmail from '../../modules/validateEmail';
 import './style.css';
 import {Redirect} from 'react-router-dom';
 
@@ -47,7 +48,7 @@ export class Signup extends Component {
           <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
             <div className='row'>
               <Field
-                type='text'
+                type='email'
                 name='email'
                 placeholder='email'
                 component={renderField}
@@ -92,6 +93,9 @@ const validate = (formProps) => {
   let errors = {};
   if (!formProps.email) {
     errors.email = 'Required';
+  }
+  if (!validateEmail(formProps.email)) {
+    errors.email = 'Invalid Email';
   }
   if (!formProps.password) {
     errors.password = 'Required';
