@@ -36,7 +36,7 @@ const LeftPanel = ({
         <DashboardButtonWrapper handleOnClick={() => {
           const randomUser = generateRandomUserData();
           handleAddUserDataDispatcher(randomUser);
-        }}>
+        }} >
           Add user
         </DashboardButtonWrapper>
         <DashboardButtonWrapper handleOnClick={handleSignOutUser}>

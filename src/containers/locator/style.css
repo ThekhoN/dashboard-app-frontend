@@ -21,7 +21,7 @@
   position: absolute;
   z-index:2;
   border-radius: 300px;
-  background: rgba(247, 148, 30, 0.1);
+  background: rgba(247, 148, 30, 0.26);
   opacity: 0;
   transform: scale(0);
   animation: ripple 0.8s 1 linear;
@@ -42,7 +42,7 @@
   position: absolute;
   z-index:2;
   border-radius: 300px;
-  background: rgba(247, 148, 30, 0.1);
+  background: rgba(247, 148, 30, 0.26);
   opacity: 0;
   transform: scale(0);
 }

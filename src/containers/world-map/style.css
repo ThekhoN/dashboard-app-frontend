@@ -5,20 +5,3 @@
   width: 100%;
   height: 100%;
 }
-
-.placeholder-loader {
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: rgba(242, 159, 78, 1);
-  transform: translateX(100%);
-  z-index: 999;
-  transition: background-color 1s linear, transform 1s ease;
-}
-
-.world-map-container.active .placeholder-loader {
-  transform: translateX(0);
-  background: rgba(242, 159, 78, 0);
-}

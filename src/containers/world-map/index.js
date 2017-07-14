@@ -18,15 +18,9 @@ const createMapOptions = maps =>
     panControl: false,
     mapTypeControl: false,
     scrollwheel: false
-});
+  });
 
 class WorldMap extends Component {
-  constructor (props) {
-    super(props);
-    this.state = {
-      active: false
-    };
-  }
   componentDidMount () {
     setTimeout(() => {
       this.setState({
@@ -35,7 +29,6 @@ class WorldMap extends Component {
     }, 300);
   }
   render () {
-    const activeClass = this.state.active ? 'active' : '';
     const {userData, activeId} = this.props;
     const componentsArr = [];
     const updateComponentsArr = () => {
@@ -51,8 +44,7 @@ class WorldMap extends Component {
     };
     updateComponentsArr();
     return (
-      <div className={`world-map-container ${activeClass}`}>
-        {/* <div className='placeholder-loader' /> */}
+      <div className='world-map-container'>
         <GoogleMapReact
           options={createMapOptions}
           bootstrapURLKeys={{key: GOOGLE_MAP_API_KEY}}
