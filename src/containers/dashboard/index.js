@@ -14,7 +14,6 @@ class Dashboard extends Component {
     this.handleDisplayContents = this.handleDisplayContents.bind(this);
   }
   handleDisplayContents () {
-    console.log('this.props.firstUserDataLoaded: ', this.props.firstUserDataLoaded);
     const {firstUserDataLoaded} = this.props;
     if (!firstUserDataLoaded) {
       return (
@@ -39,7 +38,6 @@ class Dashboard extends Component {
     handleFetchUserData(`${ROOT_URL}/api`);
   }
   render () {
-    console.log('this.props.firstUserDataLoaded: ', this.props.firstUserDataLoaded);
     return (
       <div className='dashboard'>
         {this.handleDisplayContents()}

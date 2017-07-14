@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Field, reduxForm, stopSubmit} from 'redux-form';
-import {signinUser, authLoading} from '../../actions/actionCreators';
+import {Field, reduxForm} from 'redux-form';
+import {signinUser, authLoading, authErrorReset} from '../../actions/actionCreators';
 import './style.css';
 
 const renderField = ({
@@ -26,12 +26,15 @@ const renderField = ({
 };
 
 export class Signin extends Component {
+  componentDidMount () {
+    this.props.handleResetFormError();
+  }
   handleFormSubmit ({email, password}) {
     this.props.handleSigninUser({email, password});
-    // this.props.handleAuthLoading();
   }
   render () {
-    const {handleSubmit, errorMessage} = this.props;
+    const {handleSubmit, errorMessage, authLoading} = this.props;
+    const submitButtonText = authLoading ? 'Signing in. . .' : 'Sign in';
     return (
       <div className='form-container'>
         <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
@@ -60,7 +63,7 @@ export class Signin extends Component {
             <div className='form-row'>
               <button
                 className='form-submit-button'
-                type='submit'>Sign in</button>
+                type='submit'>{submitButtonText}</button>
             </div>
           </div>
         </form>
@@ -81,6 +84,7 @@ const validate = (formProps) => {
 };
 
 const mapStateToProps = state => ({
+  authLoading: state.auth.loading,
   errorMessage: state.auth.error,
   authenticated: state.auth.authenticated
 });
@@ -93,8 +97,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(signinUser({email, password}));
   },
   handleResetFormError: () => {
-    dispatch(stopSubmit('signin', {}));
-    dispatch(stopSubmit('signup', {}));
+    dispatch(authErrorReset());
   }
 });
 

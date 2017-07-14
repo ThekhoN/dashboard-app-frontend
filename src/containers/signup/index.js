@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Field, reduxForm, stopSubmit} from 'redux-form';
-import {signupUser} from '../../actions/actionCreators';
+import {Field, reduxForm} from 'redux-form';
+import {signupUser, authErrorReset} from '../../actions/actionCreators';
 import './style.css';
 import {Redirect} from 'react-router-dom';
 
@@ -28,11 +28,15 @@ const renderField = ({
 };
 
 export class Signup extends Component {
+  componentDidMount () {
+    this.props.handleResetFormError();
+  }
   handleFormSubmit ({email, password}) {
     this.props.handleSignupUser({email, password});
   }
   render () {
-    const {handleSubmit, errorMessage, authenticated} = this.props;
+    const {handleSubmit, errorMessage, authenticated, authLoading} = this.props;
+    const submitButtonText = authLoading ? 'Signing up. . .' : 'Sign up';
     if (authenticated) {
       console.log('authenticated, you have successfully signed up!');
       return (<Redirect to='/user' />);
@@ -74,7 +78,7 @@ export class Signup extends Component {
               <div className='form-row'>
                 <button
                   className='form-submit-button'
-                  type='submit'>Sign up</button>
+                  type='submit'>{submitButtonText}</button>
               </div>
             </div>
           </form>
@@ -99,6 +103,7 @@ const validate = (formProps) => {
 };
 
 const mapStateToProps = state => ({
+  authLoading: state.auth.loading,
   errorMessage: state.auth.error,
   authenticated: state.auth.authenticated
 });
@@ -108,8 +113,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(signupUser({email, password}));
   },
   handleResetFormError: () => {
-    dispatch(stopSubmit('signin', {}));
-    dispatch(stopSubmit('signup', {}));
+    dispatch(authErrorReset());
   }
 });
 

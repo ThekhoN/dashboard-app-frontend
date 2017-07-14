@@ -3,6 +3,7 @@ import {
   AUTH_USER,
   UNAUTH_USER,
   AUTH_ERROR,
+  AUTH_ERROR_RESET,
   AUTH_LOADING,
   AUTH_LOADED,
   GET_USER_DATA,
@@ -15,7 +16,8 @@ import {
   ACTIVATE_RIGHT_PANEL,
   DEACTIVATE_RIGHT_PANEL,
   SET_SELECTED_USER,
-  DELETE_SELECTED_USER
+  DELETE_SELECTED_USER,
+  FETCH_ADMIN_DATA
 } from './types';
 import {ROOT_URL} from '../api';
 
@@ -25,6 +27,10 @@ import {ROOT_URL} from '../api';
 export const authError = error => ({
   type: AUTH_ERROR,
   payload: error
+});
+
+export const authErrorReset = () => ({
+  type: AUTH_ERROR_RESET
 });
 
 export const authLoading = () => ({
@@ -37,6 +43,7 @@ export const authLoaded = () => ({
 
 export const signinUser = ({email, password}) => {
   return function (dispatch) {
+    dispatch({type: AUTH_LOADING});
     return fetch(`${ROOT_URL}/signin`, {
       method: 'POST',
       headers: {
@@ -57,9 +64,11 @@ export const signinUser = ({email, password}) => {
       localStorage.setItem('token', responseJson.token);
       // save admin email in localStorage
       localStorage.setItem('adminEmail', email);
+      dispatch({type: AUTH_LOADED});
     })
     .catch((err) => {
       dispatch(authError('Your email or password is incorrect. \n Please try again.'));
+      dispatch({type: AUTH_LOADED});
     });
   };
 };
@@ -74,6 +83,7 @@ export const signoutUser = () => {
 
 export const signupUser = ({email, password}) => {
   return function (dispatch) {
+    dispatch({type: AUTH_LOADING});
     return fetch(`${ROOT_URL}/signup`, {
       method: 'POST',
       headers: {
@@ -88,6 +98,7 @@ export const signupUser = ({email, password}) => {
     .then(responseJson => {
       if (responseJson.error) {
         dispatch(authError(responseJson.error));
+        dispatch({type: AUTH_LOADED});
         return false;
       } else {
         // if req is good & auth'd
@@ -98,12 +109,14 @@ export const signupUser = ({email, password}) => {
         localStorage.setItem('token', responseJson.token);
         // save admin email in localStorage
         localStorage.setItem('adminEmail', email);
+        dispatch({type: AUTH_LOADED});
       }
     })
     .catch(err => {
-      console.log('error in signupUser: ', err);
+      // console.log('error in signupUser: ', err);
       // dispatch(authError(err.response.data.error));
       dispatch(authError('Error in signup...'));
+      dispatch({type: AUTH_LOADED});
     });
   };
 };
@@ -210,4 +223,12 @@ export const setSelectedUser = payload => ({
 });
 export const deleteSelectedUser = () => ({
   type: DELETE_SELECTED_USER
+});
+
+/*************************************************/
+  // ADMIN DATA
+/*************************************************/
+export const fetchAdminData = payload => ({
+  type: FETCH_ADMIN_DATA,
+  payload
 });

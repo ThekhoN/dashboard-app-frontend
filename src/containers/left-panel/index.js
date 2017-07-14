@@ -8,7 +8,7 @@ import generateRandomUserData from '../../modules/generateRandomUserData';
 
 const dummyData = {
   '__v': 0,
-  'gender': 'female',
+  'gender': 'male',
   'locale': 'en-IN',
   'profilePhoto': 'http://i1.sdlcdn.com/static/img/marketing-mailers/mailer/2016/upload999/male01.png',
   'timezone': 'GMT+05:5',
@@ -35,7 +35,6 @@ const LeftPanel = ({
       <div className='left-panel-buttons-wrapper'>
         <DashboardButtonWrapper handleOnClick={() => {
           const randomUser = generateRandomUserData();
-          console.log(randomUser);
           handleAddUserDataDispatcher(randomUser);
         }}>
           Add user
