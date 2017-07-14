@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Field, reduxForm, stopSubmit} from 'redux-form';
-import {signinUser} from '../../actions/actionCreators';
+import {signinUser, authLoading} from '../../actions/actionCreators';
 import './style.css';
 
 const renderField = ({
@@ -26,13 +26,9 @@ const renderField = ({
 };
 
 export class Signin extends Component {
-  componentDidMount () {
-    // console.log('reset all errors in signin');
-    // this.props.handleResetFormError();
-  }
   handleFormSubmit ({email, password}) {
-    // console.log('submitting signin: ', {email, password});
     this.props.handleSigninUser({email, password});
+    // this.props.handleAuthLoading();
   }
   render () {
     const {handleSubmit, errorMessage} = this.props;
@@ -90,6 +86,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  handleAuthLoading: () => {
+    dispatch(authLoading());
+  },
   handleSigninUser: ({email, password}) => {
     dispatch(signinUser({email, password}));
   },

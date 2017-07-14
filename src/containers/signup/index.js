@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Field, reduxForm, stopSubmit} from 'redux-form';
 import {signupUser} from '../../actions/actionCreators';
-import styles from './style.css';
+import './style.css';
 import {Redirect} from 'react-router-dom';
 
 const renderField = ({
@@ -13,25 +13,22 @@ const renderField = ({
     meta: {touched, error}
   }) => {
   return (
-    <fieldset>
+    <fieldset
+      className='form-row'>
       <input
+        className='form-input'
         {...input}
         name={label}
         placeholder={placeholder}
         type={type}
       />
-      {touched && error && <span className='error-text'>{error}</span>}
+      {touched && error && <p className='error-text-wrapper'><span className='form-error-text'>{error}</span></p>}
     </fieldset>
   );
 };
 
 export class Signup extends Component {
-  componentDidMount () {
-    // console.log('reset all errors in signup');
-    // this.props.handleResetFormError();
-  }
   handleFormSubmit ({email, password}) {
-    console.log('submitting signup: ', {email, password});
     this.props.handleSignupUser({email, password});
   }
   render () {
@@ -41,35 +38,48 @@ export class Signup extends Component {
       return (<Redirect to='/user' />);
     }
     return (
-      <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-        <Field
-          type='text'
-          name='email'
-          placeholder='email'
-          component={renderField}
-          label='email'
-        />
-        <Field
-          type='password'
-          name='password'
-          placeholder='password'
-          component={renderField}
-          label='password'
-        />
-        <Field
-          type='password'
-          name='passwordConfirm'
-          placeholder='confirm password'
-          component={renderField}
-          label='confirm password'
-        />
-        {errorMessage && <div className={styles.errorText}>{errorMessage}</div>}
-        <br />
-        <button
-          action='submit'
-          type='submit'
-          >Sign up</button>
-      </form>
+      <div className='form-container-wrapper'>
+        <div className='form-container'>
+          <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+            <div className='row'>
+              <Field
+                type='text'
+                name='email'
+                placeholder='email'
+                component={renderField}
+                label='email'
+              />
+            </div>
+            <div className='row'>
+              <Field
+                type='password'
+                name='password'
+                placeholder='password'
+                component={renderField}
+                label='password'
+              />
+            </div>
+            <div className='row'>
+              <Field
+                type='password'
+                name='passwordConfirm'
+                placeholder='confirm password'
+                component={renderField}
+                label='confirm password'
+              />
+            </div>
+            {errorMessage && <div className='form-error-text'>{errorMessage}</div>}
+            <br />
+            <div className='row'>
+              <div className='form-row'>
+                <button
+                  className='form-submit-button'
+                  type='submit'>Sign up</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
     );
   }
 }
@@ -83,7 +93,7 @@ const validate = (formProps) => {
     errors.password = 'Required';
   }
   if (formProps.password !== formProps.passwordConfirm) {
-    errors.passwordConfirm = 'Password should match!';
+    errors.passwordConfirm = 'Password should match';
   }
   return errors;
 };

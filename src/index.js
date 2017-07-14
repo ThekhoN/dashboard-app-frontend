@@ -9,17 +9,21 @@ import ioClient from 'socket.io-client';
 import {ROOT_URL} from './api' ;
 import {getUserDataDispatcher} from './actions/actionCreators';
 let io = ioClient(`${ROOT_URL}`);
+
+// handle web sockets
 io.on('db updated', (message) => {
   setTimeout(
     () => {
-      console.log('message from Server on connect: ', message + ' ' + Date.now());
+      // console.log('message from Server on connect: ', message + ' ' + Date.now());
       store.dispatch(getUserDataDispatcher(`${ROOT_URL}/api`));
     }, 300);
 });
+
+// handle auth and email on load
 if (window.localStorage) {
   const token = localStorage.getItem('token');
   const adminEmail = localStorage.getItem('userEmail');
-  if (token && adminEmail) {
+  if (token) {
     store.dispatch({
       type: 'AUTH_USER'
     });
@@ -33,6 +37,7 @@ if (window.localStorage) {
     });
   }
 }
+
 
 const mountNode = document.getElementById('root');
 

@@ -16,8 +16,7 @@ class Locator extends Component {
     this.handleClickState = this.handleClickState.bind(this);
     this.state = {
       hoverClass: HOVER_STATUS.NORMAL,
-      clicked: false,
-      newMountActive: true
+      clicked: false
     };
   }
   onMouseEnter () {
@@ -30,28 +29,19 @@ class Locator extends Component {
       hoverClass: HOVER_STATUS.NORMAL
     });
   }
-  componentDidMount () {
-    // console.log('mounted locator!!!');
-    setTimeout(() => {
-      this.setState({
-        newMountActive: false
-      });
-    }, 300);
-  }
   handleClickState () {
     this.setState({
-      clicked: !this.state.clicked
+      clicked: true
     }, () => {
       setTimeout(() => {
         this.setState({
           clicked: false
         });
-      }, 300);
+      }, 600);
     });
   }
   render () {
     const clickState = this.state.clicked ? 'active' : '';
-    const newMountActiveState = this.state.newMountActive ? 'new-mount-active' : '';
     const {data, handleSetSelectedUser, handleActivateRightPanel} = this.props;
     const selectedState = this.props.selected ? 'selected' : '';
     return (
@@ -64,8 +54,7 @@ class Locator extends Component {
         className={`locator ${this.state.hoverClass} ${selectedState} ${clickState}`}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave} >
-        <div className='locator-inner' />
-        <span className={`locator-effects ${clickState} ${newMountActiveState}`} onClick={(e) => {
+        <span className={`locator-effects ${clickState}`} onClick={(e) => {
           e.stopPropagation();
         }} />
       </div>

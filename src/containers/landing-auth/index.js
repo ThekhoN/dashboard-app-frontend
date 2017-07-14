@@ -1,17 +1,18 @@
 import React, {Component} from 'react';
 import Signin from '../signin';
-// import {Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import './style.css';
 
 class LandingAuth extends Component {
   render () {
     return (
-      <div className='landing-auth'>
+      <div className='landing-auth form-container-wrapper'>
         <Signin />
-        {/* <br />
-        <Link to='/signup'>
-          Click here to sign up
-        </Link> */}
+        <div className='landing-auth-signup'>
+          <Link to='/signup'>
+            Click here to <b>sign up</b>
+          </Link>
+        </div>
       </div>
     );
   }

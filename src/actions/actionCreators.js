@@ -3,8 +3,11 @@ import {
   AUTH_USER,
   UNAUTH_USER,
   AUTH_ERROR,
+  AUTH_LOADING,
+  AUTH_LOADED,
   GET_USER_DATA,
   LOADING_USER_DATA,
+  LOADED_FIRST_USER_DATA,
   LOADED_USER_DATA,
   GET_USER_DATA_ERROR,
   ACTIVATE_LEFT_PANEL,
@@ -22,6 +25,14 @@ import {ROOT_URL} from '../api';
 export const authError = error => ({
   type: AUTH_ERROR,
   payload: error
+});
+
+export const authLoading = () => ({
+  type: AUTH_LOADING
+});
+
+export const authLoaded = () => ({
+  type: AUTH_LOADED
 });
 
 export const signinUser = ({email, password}) => {
@@ -79,10 +90,14 @@ export const signupUser = ({email, password}) => {
         dispatch(authError(responseJson.error));
         return false;
       } else {
+        // if req is good & auth'd
+        // update state to auth'd
         dispatch({type: AUTH_USER});
         dispatch({type: 'FETCH_ADMIN_DATA', payload: email});
+        // save JWT in localStorage
         localStorage.setItem('token', responseJson.token);
-        localStorage.setItem('userEmail', email);
+        // save admin email in localStorage
+        localStorage.setItem('adminEmail', email);
       }
     })
     .catch(err => {
@@ -106,29 +121,30 @@ export const getUserDataError = error => ({
   type: GET_USER_DATA_ERROR,
   payload: error
 });
-export const loadingUserData = payload => {
-  return {
-    type: LOADING_USER_DATA,
-    payload
-  };
-};
-export const loadedUserData = payload => {
-  return {
-    type: LOADED_USER_DATA,
-    payload
-  };
-};
+
+export const loadingUserData = payload => ({
+  type: LOADING_USER_DATA
+});
+
+export const loadedUserData = payload => ({
+  type: LOADED_USER_DATA
+});
+
+export const loadedFirstUserData = payload => ({
+  type: LOADED_FIRST_USER_DATA
+});
 
 export const errorGetUserData = 'ERROR in GET_USER_DATA';
 
 export const getUserDataDispatcher = (url) => {
   return function (dispatch) {
-    dispatch(loadingUserData('loading'));
+    dispatch(loadingUserData());
     return fetch(url)
     .then(response => response.json())
     .then(json => {
       dispatch(getUserData(json));
-      dispatch(loadedUserData('loaded'));
+      dispatch(loadedUserData());
+      dispatch(loadedFirstUserData());
     })
     .catch(err => dispatch(getUserDataError(errorGetUserData)));
   };
@@ -159,7 +175,6 @@ export const addUserDataDispatcher = ({gender, locale, profilePhoto, timezone, l
         // dispatch userDataSubmitError
         return false;
       } else {
-        console.log('sub');
         // dispatch userDataSubmitSuccess
       }
     })

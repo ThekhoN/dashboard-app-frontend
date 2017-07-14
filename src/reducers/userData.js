@@ -2,11 +2,13 @@ import {
   GET_USER_DATA,
   LOADING_USER_DATA,
   LOADED_USER_DATA,
+  LOADED_FIRST_USER_DATA,
   GET_USER_DATA_ERROR
 } from '../actions/types';
 
 export const initialStateEntries = {
-  status: '',
+  firstLoaded: false,
+  loaded: false,
   data: [],
   error: ''
 };
@@ -18,11 +20,11 @@ const userData = (state = initialStateEntries, action) => {
     case GET_USER_DATA_ERROR:
       return {...state, error: action.payload};
     case LOADING_USER_DATA:
-      return {...state, status: action.payload};
+      return {...state, loaded: false};
     case LOADED_USER_DATA:
-      return {...state, status: action.payload};
-    case 'ADDING_USER_DATA':
-      return state;
+      return {...state, loaded: true};
+    case LOADED_FIRST_USER_DATA:
+      return {...state, firstLoaded: true};
     default:
       return state;
   }
