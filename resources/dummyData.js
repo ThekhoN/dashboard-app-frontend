@@ -1,5 +1,5 @@
 // post data template
-
+/*
 {
 	"gender":"female",
 	"locale":"en_US",
@@ -21,4 +21,4 @@ https://i1.sdlcdn.com/static/img/marketing-mailers/mailer/2016/upload999/female0
 https://i1.sdlcdn.com/static/img/marketing-mailers/mailer/2016/upload999/female02.png
 https://i1.sdlcdn.com/static/img/marketing-mailers/mailer/2016/upload999/female03.png
 https://i1.sdlcdn.com/static/img/marketing-mailers/mailer/2016/upload999/female04.png
-
+*/

@@ -30,19 +30,15 @@ class WorldMap extends Component {
   }
   render () {
     const {userData, activeId} = this.props;
-    const componentsArr = [];
-    const updateComponentsArr = () => {
-      userData.forEach(e => {
+    const renderLocators = () => {
+      return userData.map(e => {
         if (e._id === activeId) {
-          const selectedOne = (<Locator data={e} id={e._id} key={e._id} lat={e.lat} lng={e.long} selected='true' />);
-          componentsArr.push(selectedOne);
+          return (<Locator data={e} id={e._id} key={e._id} lat={e.lat} lng={e.long} selected='true' />);
         } else {
-          const normal = (<Locator data={e} id={e._id} key={e._id} lat={e.lat} lng={e.long} selected='' />);
-          componentsArr.push(normal);
+          return (<Locator data={e} id={e._id} key={e._id} lat={e.lat} lng={e.long} selected='' />);
         }
       });
     };
-    updateComponentsArr();
     return (
       <div className='world-map-container'>
         <GoogleMapReact
@@ -52,7 +48,7 @@ class WorldMap extends Component {
           defaultZoom={this.props.zoom}
         >
           {
-            componentsArr
+            renderLocators()
           }
         </GoogleMapReact>
       </div>
