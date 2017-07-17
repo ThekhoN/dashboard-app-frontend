@@ -6,18 +6,6 @@ import {connect} from 'react-redux';
 import {signoutUser, activateLeftPanel, deactivateLeftPanel, addUserDataDispatcher} from '../../actions/actionCreators';
 import generateRandomUserData from '../../modules/generateRandomUserData';
 
-const dummyData = {
-  '__v': 0,
-  'gender': 'male',
-  'locale': 'en-IN',
-  'profilePhoto': 'https://i1.sdlcdn.com/static/img/marketing-mailers/mailer/2016/upload999/male01.png',
-  'timezone': 'GMT+05:5',
-  'lat': '26.9716',
-  'long': '59.5946',
-  '_id': '5965c51e5dcd2530ec48eaaf',
-  'timeStamp': '2017-07-12T06:43:42.832Z'
-};
-
 const LeftPanel = ({
   activeState,
   data,
@@ -31,7 +19,7 @@ const LeftPanel = ({
   return (
     <div className={`left-panel panel-shadow ${activeState}`}>
       {/* {<div className='left-panel-control' onClick={controlClickEvent} />} */}
-      <AdminAvatar imgSrc={dummyData.profilePhoto} title={adminEmail} />
+      <AdminAvatar imgSrc='https://i1.sdlcdn.com/static/img/marketing-mailers/mailer/2016/upload999/male01.png' title={adminEmail} />
       <div className='left-panel-buttons-wrapper'>
         <DashboardButtonWrapper handleOnClick={() => {
           const randomUser = generateRandomUserData();
